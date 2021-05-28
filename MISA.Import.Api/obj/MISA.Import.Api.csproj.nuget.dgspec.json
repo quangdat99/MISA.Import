@@ -1,0 +1,190 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\MISA\\API\\MISA.Import\\MISA.Import.Api\\MISA.Import.Api.csproj": {}
+  },
+  "projects": {
+    "E:\\MISA\\API\\MISA.Import\\MISA.Import.Api\\MISA.Import.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Api\\MISA.Import.Api.csproj",
+        "projectName": "MISA.Import.Api",
+        "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Api\\MISA.Import.Api.csproj",
+        "packagesPath": "C:\\Users\\dat.dq173003\\.nuget\\packages\\",
+        "outputPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dat.dq173003\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj": {
+                "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj"
+              },
+              "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\MISA.Import.Infractructure.csproj": {
+                "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\MISA.Import.Infractructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj",
+        "projectName": "MISA.Import.Core",
+        "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj",
+        "packagesPath": "C:\\Users\\dat.dq173003\\.nuget\\packages\\",
+        "outputPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dat.dq173003\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\MISA.Import.Infractructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\MISA.Import.Infractructure.csproj",
+        "projectName": "MISA.Import.Infractructure",
+        "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\MISA.Import.Infractructure.csproj",
+        "packagesPath": "C:\\Users\\dat.dq173003\\.nuget\\packages\\",
+        "outputPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Infractructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dat.dq173003\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj": {
+                "projectPath": "E:\\MISA\\API\\MISA.Import\\MISA.Import.Core\\MISA.Import.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

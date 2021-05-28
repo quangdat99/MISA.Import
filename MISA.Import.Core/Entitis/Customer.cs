@@ -1,12 +1,12 @@
 ﻿
-using MISA.CukCuk.Core.Enum;
+using MISA.Import.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.CukCuk.Core.Entities
+namespace MISA.Import.Core.Entities
 {
     /// <summary>
     /// Thông tin khách hàng
@@ -34,6 +34,11 @@ namespace MISA.CukCuk.Core.Entities
         /// Id nhóm khách hàng
         /// </summary>
         public Guid? CustomerGroupId { get; set; }
+
+        /// <summary>
+        /// Tên nhóm khách hàng
+        /// </summary>
+        public string CustomerGroupName { get; set; }
 
         /// <summary>
         /// Giới tính: 1 - Nam, 0 - Nữ, 2 - Khác
@@ -94,7 +99,7 @@ namespace MISA.CukCuk.Core.Entities
         /// <summary>
         /// Giới tính
         /// </summary>
-/*        public string GenderName
+        public string GenderName
         {
             get
             {
@@ -106,7 +111,7 @@ namespace MISA.CukCuk.Core.Entities
                     _ => Properties.Resources.Unknown
                 };
             }
-        }*/
+        }
 
         #endregion
 

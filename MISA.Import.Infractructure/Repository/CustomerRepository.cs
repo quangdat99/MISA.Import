@@ -1,5 +1,5 @@
-﻿using MISA.CukCuk.Core.Entities;
-using MISA.CukCuk.Core.Interface.Repository;
+﻿using MISA.Import.Core.Entities;
+using MISA.Import.Core.Interface.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Data;
 using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 
-namespace MISA.CukCuk.Infrastructure.Repository
+namespace MISA.Import.Infrastructure.Repository
 {
    /// <summary>
    /// Kho chứa khách hàng
@@ -60,6 +60,7 @@ namespace MISA.CukCuk.Infrastructure.Repository
         /// </summary>
         /// <param name="phoneNumber"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (28/05/2021)
         public bool CheckPhoneNumberExist(string phoneNumber)
         {
             Parameters.Add("@m_PhoneNumber", phoneNumber);
@@ -68,12 +69,44 @@ namespace MISA.CukCuk.Infrastructure.Repository
         }
 
 
+        public bool CheckCustomerGroupExist(Guid customerGroupId)
+        {
+            Parameters.Add("@m_CustomerGroupId", customerGroupId);
+            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckCustomerGroupExist", param: Parameters, commandType: CommandType.StoredProcedure);
+            return isExist;
+        }
+
+        /// <summary>
+        /// Hàm check Tên nhóm khách hàng có tồn tại trong hệ thống không?
+        /// </summary>
+        /// <param name="customerGroupName"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (28/05/2021)
+        public CustomerGroup GetCustomerGroupByName(string customerGroupName)
+        {
+            Parameters.Add("@m_CustomerGroupName", customerGroupName);
+            var customerGroup = DbConnection.QueryFirstOrDefault<CustomerGroup>("Proc_GetCustomerGroupByName", param: Parameters, commandType: CommandType.StoredProcedure);
+            return customerGroup;
+        }
+
+        /// <summary>
+        /// Hàm insert một khách hàng vào db.
+        /// </summary>
+        /// <param name="customer">Thông tin khách hàng.</param>
+        /// <returns>Số khách hàng thêm thành công.</returns>
+        /// CreatedBy: dqdat (28/05/2021)
+        public int InsertCustomer(Customer customer)
+        {
+            MappingProcParametersValueWithObject(customer);
+            var rowsAffect = DbConnection.Execute("Proc_InsertCustomer", Parameters, commandType: CommandType.StoredProcedure);
+            return rowsAffect;
+        }
 
         /// <summary>
         /// Thực hiện gán giá trị tham số đầu vào của store với các property của object
         /// </summary>
         /// <param name="customer"></param>
-        /// CreatedBy: DQDAT (22/5/2021)
+        /// CreatedBy: dqdat (28/05/2021)
         void MappingProcParametersValueWithObject(Customer customer)
         {
             // Lấy ra các properties của đối tượng:
@@ -91,20 +124,6 @@ namespace MISA.CukCuk.Infrastructure.Repository
                 // Đặt tên cho tham số đầu vào:
                 Parameters.Add($"@m_{propertyName}", value);
             }
-        }
-
-        public bool CheckCustomerGroupExist(Guid customerGroupId)
-        {
-            Parameters.Add("@m_CustomerGroupId", customerGroupId);
-            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckCustomerGroupExist", param: Parameters, commandType: CommandType.StoredProcedure);
-            return isExist;
-        }
-
-        public CustomerGroup GetCustomerGroupByName(string customerGroupName)
-        {
-            Parameters.Add("@m_CustomerGroupName", customerGroupName);
-            var customerGroup = DbConnection.QueryFirstOrDefault<CustomerGroup>("Proc_GetCustomerGroupByName", param: Parameters, commandType: CommandType.StoredProcedure);
-            return customerGroup;
         }
         #endregion
 

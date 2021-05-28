@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.CukCuk.Core.Entities
+namespace MISA.Import.Core.Entities
 {
     /// <summary>
     /// Thông tin nhóm khách hàng

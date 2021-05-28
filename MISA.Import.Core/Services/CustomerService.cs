@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
-using MISA.CukCuk.Core.Entities;
-using MISA.CukCuk.Core.Interface.Repository;
-using MISA.CukCuk.Core.Interface.Service;
+using MISA.Import.Core.Entities;
+using MISA.Import.Core.Interface.Repository;
+using MISA.Import.Core.Interface.Service;
 using MISA.Import.Core.Entitis;
 using OfficeOpenXml;
 using System;
@@ -14,9 +14,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MISA.CukCuk.Core;
+using MISA.Import.Core;
 
-namespace MISA.CukCuk.Core.Services
+namespace MISA.Import.Core.Services
 {
     /// <summary>
     /// Dịch vụ khách hàng
@@ -42,6 +42,26 @@ namespace MISA.CukCuk.Core.Services
             _customerRepository = customerRepository;
         }
 
+        /// <summary>
+        /// Hàm thêm nhiều khách hàng không có lỗi vào db.
+        /// </summary>
+        /// <param name="customersImport">Danh sách các khách hàng và lỗi của từng khách hàng</param>
+        /// <returns>Số khách hàng thêm thành công.</returns>
+        /// CreatedBy: dbhuan (06/05/2021)
+        public int InsertCustomers(List<CustomerImport> customersImport)
+        {
+            int i = 0;
+            foreach (var customerImport in customersImport)
+            {
+                if (customerImport.Errors.Count() == 0)
+                {
+                    i++;
+                    _customerRepository.InsertCustomer(customerImport.Data);
+                }
+            }
+            return i;
+        }
+
 
         #endregion
 
@@ -52,7 +72,7 @@ namespace MISA.CukCuk.Core.Services
         /// <param name="file">file excel.</param>
         /// <param name="cancellationToken">Token hủy</param>
         /// <returns>Danh sách các khách hàng và lỗi của từng khách hàng.</returns>
-        public async Task<List<CustomerImport>> ReadFromExcel(IFormFile file, CancellationToken cancellationToken)
+        public async Task<List<CustomerImport>> ReadFile(IFormFile file, CancellationToken cancellationToken)
         {
             var customersImport = new List<CustomerImport>();
 
@@ -65,24 +85,24 @@ namespace MISA.CukCuk.Core.Services
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                     var rowCount = worksheet.Dimension.Rows;
 
-                    for (int rowNumber = 3; rowNumber <= rowCount; rowNumber++)
+                    for (int row = 3; row <= rowCount; row++)
                     {
                         var customer = new Customer()
                         {
-                            CustomerCode = GetValue(worksheet.Cells[rowNumber, 1].Value),
-                            FullName = GetValue(worksheet.Cells[rowNumber, 2].Value),
-                            MemberCardCode = GetValue(worksheet.Cells[rowNumber, 3].Value),
-                            PhoneNumber = GetValue(worksheet.Cells[rowNumber, 5].Value),
-                            DateOfBirth = ParseDate(worksheet.Cells[rowNumber, 6].Value),
-                            CompanyName = GetValue(worksheet.Cells[rowNumber, 7].Value),
-                            CompanyTaxCode = GetValue(worksheet.Cells[rowNumber, 8].Value),
-                            Email = GetValue(worksheet.Cells[rowNumber, 9].Value),
-                            Address = GetValue(worksheet.Cells[rowNumber, 10].Value),
-                            Note = GetValue(worksheet.Cells[rowNumber, 11].Value)
+                            CustomerCode = ParseString(worksheet.Cells[row, 1].Value),
+                            FullName = ParseString(worksheet.Cells[row, 2].Value),
+                            MemberCardCode = ParseString(worksheet.Cells[row, 3].Value),
+                            PhoneNumber = ParseString(worksheet.Cells[row, 5].Value),
+                            DateOfBirth = ParseDate(worksheet.Cells[row, 6].Value),
+                            CompanyName = ParseString(worksheet.Cells[row, 7].Value),
+                            CompanyTaxCode = ParseString(worksheet.Cells[row, 8].Value),
+                            Email = ParseString(worksheet.Cells[row, 9].Value),
+                            Address = ParseString(worksheet.Cells[row, 10].Value),
+                            Note = ParseString(worksheet.Cells[row, 11].Value)
                         };
 
                         var customerImport = new CustomerImport();
-                        customerImport.Data = customer;
+                        
 
                         // check trong file Excel import
                         if (customersImport.Any())
@@ -92,7 +112,7 @@ namespace MISA.CukCuk.Core.Services
                             {
                                 if (customersImport[i].Data.CustomerCode == customer.CustomerCode)
                                 {
-                                    customerImport.Errors.Add("Mã khách hàng đã trùng với khách hàng khác trong tệp nhập khẩu.");
+                                    customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeImport);
                                     break;
                                 }
 
@@ -103,7 +123,7 @@ namespace MISA.CukCuk.Core.Services
                             {
                                 if (customersImport[i].Data.PhoneNumber == customer.PhoneNumber)
                                 {
-                                    customerImport.Errors.Add("SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu.");
+                                    customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberImport);
                                     break;
                                 }
 
@@ -113,23 +133,29 @@ namespace MISA.CukCuk.Core.Services
                         // check mã khách hàng đã tồn tại trong hệ thống.
                         if (_customerRepository.CheckCustomerCodeExist(customer.CustomerCode))
                         {
-                            customerImport.Errors.Add("Mã khách hàng đã tồn tại trong hệ thống.");
+                            customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeExist);
                         }
 
                         // check số điện thoại đã tồn tại trong hệ thống.
                         if (_customerRepository.CheckPhoneNumberExist(customer.PhoneNumber))
                         {
-                            customerImport.Errors.Add("SĐT đã có trong hệ thống.");
+                            customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberExist);
                         }
 
                         // check nhóm khách hàng có tồn tại trên hệ thống không.
-                        string customerGroupName = GetValue(worksheet.Cells[rowNumber, 4].Value);
-                        if (_customerRepository.GetCustomerGroupByName(customerGroupName) == null)
+                        string customerGroupName = ParseString(worksheet.Cells[row, 4].Value);
+                        var customerGroup = _customerRepository.GetCustomerGroupByName(customerGroupName);
+                        if (customerGroup == null)
                         {
-                            customerImport.Errors.Add("Nhóm khách hàng không có trong hệ thống.");
+                            customerImport.Errors.Add(Properties.Resources.MsgCustomerGroupIsExist);
+                        }
+                        else
+                        {
+                            customer.CustomerGroupId = customerGroup.CustomerGroupId;
+                            customer.CustomerGroupName = customerGroupName;
                         }
 
-
+                        customerImport.Data = customer;
                         customersImport.Add(customerImport);
                     }
                 }
@@ -142,30 +168,31 @@ namespace MISA.CukCuk.Core.Services
         /// <summary>
         /// Hàm chuyển giá trị object từ excel thành kiểu string.
         /// </summary>
-        /// <param name="valueObj">Giá trị cần chuyển</param>
+        /// <param name="obj">Giá trị cần chuyển</param>
         /// <returns>Chuỗi string.</returns>
-        private string GetValue(object valueObj)
+        private string ParseString(object obj)
         {
-            if (valueObj is null)
+            if (obj is null)
             {
                 return null;
             }
-            return valueObj.ToString().Trim();
+            return obj.ToString().Trim();
         }
 
         /// <summary>
         /// Hàm parse date string thành kiểu DateTime.
         /// </summary>
-        /// <param name="valueObj">dateString</param>
+        /// <param name="obj">dateString</param>
         /// <returns>DateTime</returns>
-        private DateTime? ParseDate(object valueObj)
+        private DateTime? ParseDate(object obj)
         {
-            string valueStr = GetValue(valueObj);
-            if (valueObj is null)
+            string valueStr = ParseString(obj);
+            if (obj is null)
             {
                 return null;
             }
-            return DateTime.ParseExact(valueStr, formats: new string[] { "dd/MM/yyyy", "MM/yyyy", "yyyy" }, CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(valueStr, new string[] { "dd/MM/yyyy", "MM/yyyy", "yyyy", "d/M/yyyy", "dd/yyyy", "dd/M/yyyy", "d/MM/yyyy", "M/yyyy", "d/yyyy" }, new CultureInfo("en-US"),
+                                            DateTimeStyles.None);
         }
 
 

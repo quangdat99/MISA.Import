@@ -1,11 +1,11 @@
-﻿using MISA.CukCuk.Core.Enum;
+﻿using MISA.Import.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.CukCuk.Core.Entities
+namespace MISA.Import.Core.Entities
 {
     /// <summary>
     /// Base Entity

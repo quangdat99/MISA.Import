@@ -123,4 +123,31 @@
   <data name="Male" xml:space="preserve">
     <value>Nam</value>
   </data>
+  <data name="MsgCustomerGroupIsExist" xml:space="preserve">
+    <value>Nhóm khách hàng không có trong hệ thống. </value>
+  </data>
+  <data name="MsgDuplicateCustomerCodeExist" xml:space="preserve">
+    <value>Mã khách hàng đã tồn tại trong hệ thống. </value>
+  </data>
+  <data name="MsgDuplicateCustomerCodeImport" xml:space="preserve">
+    <value>Mã khách hàng đã trùng với khách hàng khác trong tệp nhập khẩu. </value>
+  </data>
+  <data name="MsgDuplicatePhoneNumberExist" xml:space="preserve">
+    <value>SĐT đã có trong hệ thống. </value>
+  </data>
+  <data name="MsgDuplicatePhoneNumberImport" xml:space="preserve">
+    <value>SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu. </value>
+  </data>
+  <data name="MsgFileNull" xml:space="preserve">
+    <value>File rỗng.</value>
+  </data>
+  <data name="MsgMalformedFile" xml:space="preserve">
+    <value>File không đúng định dạng.</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Không xác định</value>
+  </data>
 </root>

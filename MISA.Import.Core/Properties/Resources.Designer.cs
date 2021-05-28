@@ -77,5 +77,86 @@ namespace MISA.Import.Core.Properties {
                 return ResourceManager.GetString("Male", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhóm khách hàng không có trong hệ thống. .
+        /// </summary>
+        public static string MsgCustomerGroupIsExist {
+            get {
+                return ResourceManager.GetString("MsgCustomerGroupIsExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng đã tồn tại trong hệ thống. .
+        /// </summary>
+        public static string MsgDuplicateCustomerCodeExist {
+            get {
+                return ResourceManager.GetString("MsgDuplicateCustomerCodeExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng đã trùng với khách hàng khác trong tệp nhập khẩu. .
+        /// </summary>
+        public static string MsgDuplicateCustomerCodeImport {
+            get {
+                return ResourceManager.GetString("MsgDuplicateCustomerCodeImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SĐT đã có trong hệ thống. .
+        /// </summary>
+        public static string MsgDuplicatePhoneNumberExist {
+            get {
+                return ResourceManager.GetString("MsgDuplicatePhoneNumberExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu. .
+        /// </summary>
+        public static string MsgDuplicatePhoneNumberImport {
+            get {
+                return ResourceManager.GetString("MsgDuplicatePhoneNumberImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File rỗng..
+        /// </summary>
+        public static string MsgFileNull {
+            get {
+                return ResourceManager.GetString("MsgFileNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File không đúng định dạng..
+        /// </summary>
+        public static string MsgMalformedFile {
+            get {
+                return ResourceManager.GetString("MsgMalformedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Khác.
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không xác định.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
     }
 }

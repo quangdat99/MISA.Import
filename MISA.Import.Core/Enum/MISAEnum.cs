@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.CukCuk.Core.Enum
+namespace MISA.Import.Core.Enum
 {
     /// <summary>
     /// Trạng thái của object

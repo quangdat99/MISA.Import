@@ -1,4 +1,4 @@
-﻿using MISA.CukCuk.Core.Attributes;
+﻿
 using MISA.CukCuk.Core.Enum;
 using System;
 using System.Collections.Generic;
@@ -23,14 +23,11 @@ namespace MISA.CukCuk.Core.Entities
         /// <summary>
         /// Mã khách hàng
         /// </summary>
-        [PropertyRequired]
-        [PropertyMaxLength(10)]
         public string CustomerCode { get; set; }
 
         /// <summary>
         /// Họ và tên
         /// </summary>
-        [PropertyRequired]
         public string FullName { get; set; }
 
         /// <summary>
@@ -57,7 +54,6 @@ namespace MISA.CukCuk.Core.Entities
         /// Email của khách hàng
         /// </summary>
 
-        [PropertyEmailFormat]
         public string Email { get; set; }
 
         /// <summary>
@@ -98,7 +94,7 @@ namespace MISA.CukCuk.Core.Entities
         /// <summary>
         /// Giới tính
         /// </summary>
-        public string GenderName
+/*        public string GenderName
         {
             get
             {
@@ -110,7 +106,7 @@ namespace MISA.CukCuk.Core.Entities
                     _ => Properties.Resources.Unknown
                 };
             }
-        }
+        }*/
 
         #endregion
 

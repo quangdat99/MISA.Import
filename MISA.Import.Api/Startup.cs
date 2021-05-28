@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MISA.CukCuk.Core.Interface.Repository;
+using MISA.CukCuk.Core.Interface.Service;
+using MISA.CukCuk.Core.Services;
+using MISA.CukCuk.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +36,9 @@ namespace MISA.Import.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.Import.Api", Version = "v1" });
             });
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

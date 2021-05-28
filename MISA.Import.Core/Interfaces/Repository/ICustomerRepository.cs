@@ -20,7 +20,7 @@ namespace MISA.CukCuk.Core.Interface.Repository
         /// <param name="customerCode"></param>
         /// <returns>true - đã tồn tại; false - không tồn tại</returns>
         /// CreatedBy: DQDAT (22/05/2021)
-        bool CheckCustomerCodeExist(string customerCode, Guid? customerId = null);
+        bool CheckCustomerCodeExist(string customerCode);
 
         /// <summary>
         /// Kiểm tra số điện thoại đã tồn tại trong hệ thống chưa
@@ -29,5 +29,22 @@ namespace MISA.CukCuk.Core.Interface.Repository
         /// <returns></returns>
         /// CreatedBy: DQDAT (22/05/2021)
         bool CheckPhoneNumberExist(string phoneNumber);
+
+        /// <summary>
+        /// Kiểm tra nhóm khách hàng có trong hệ thống không
+        /// </summary>
+        /// <param name="customerGroupId"></param>
+        /// <returns></returns>
+        /// CreatedBy: DQDAT (22/05/2021)
+        bool CheckCustomerGroupExist(Guid customerGroupId);
+
+        /// <summary>
+        /// Lấy nhóm khách hàng theo tên nhóm khách hàng
+        /// </summary>
+        /// <param name="customerGroupName"></param>
+        /// <returns></returns>
+        /// CreatedBy: DQDAT (22/05/2021)
+        CustomerGroup GetCustomerGroupByName(string customerGroupName);
+
     }
 }

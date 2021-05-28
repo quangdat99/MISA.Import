@@ -1,0 +1,15 @@
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\MISA.Import.Core.dll
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.csprojAssemblyReference.cache
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.AssemblyInfoInputs.cache
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.AssemblyInfo.cs
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\MISA.Import.Infractructure.deps.json
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\MISA.Import.Infractructure.dll
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\ref\MISA.Import.Infractructure.dll
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\MISA.Import.Infractructure.pdb
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\bin\Debug\net5.0\MISA.Import.Core.pdb
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.csproj.CoreCompileInputs.cache
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.csproj.CopyComplete
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.dll
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\ref\MISA.Import.Infractructure.dll
+E:\MISA\API\MISA.Import\MISA.Import.Infractructure\obj\Debug\net5.0\MISA.Import.Infractructure.pdb

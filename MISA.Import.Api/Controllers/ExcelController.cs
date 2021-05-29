@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MISA.Import.Core.Interface.Repository;
+using MISA.Import.Core.Exceptions;
 
 namespace MISA.Import.Api.Controllers
 {
@@ -50,12 +51,13 @@ namespace MISA.Import.Api.Controllers
         {
             if (formFile == null || formFile.Length <= 0)
             {
-                throw new Exception(Core.Properties.Resources.MsgFileNull);
+                throw new ValidateException(Core.Properties.Resources.MsgFileNull, null);
+                //return BadRequest();
             }
 
             if (!Path.GetExtension(formFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
             {
-                throw new Exception(Core.Properties.Resources.MsgMalformedFile);
+                throw new ValidateException(Core.Properties.Resources.MsgMalformedFile, null);
             }
 
 

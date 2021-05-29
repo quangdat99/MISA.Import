@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MISA.Import.Core.Exceptions;
 using MISA.Import.Core.Interface.Repository;
 using MISA.Import.Core.Interface.Service;
 using MISA.Import.Core.Services;
@@ -30,6 +31,8 @@ namespace MISA.Import.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(options =>
+                options.Filters.Add(new HttpResponseExceptionFilter()));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

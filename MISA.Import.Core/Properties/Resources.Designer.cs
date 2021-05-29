@@ -61,6 +61,15 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra..
+        /// </summary>
+        public static string Error_Exception {
+            get {
+                return ResourceManager.GetString("Error_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nữ.
         /// </summary>
         public static string Female {
@@ -79,7 +88,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhóm khách hàng không có trong hệ thống. .
+        ///   Looks up a localized string similar to Nhóm khách hàng không có trong hệ thống..
         /// </summary>
         public static string MsgCustomerGroupIsExist {
             get {
@@ -88,7 +97,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã khách hàng đã tồn tại trong hệ thống. .
+        ///   Looks up a localized string similar to Mã khách hàng đã tồn tại trong hệ thống..
         /// </summary>
         public static string MsgDuplicateCustomerCodeExist {
             get {
@@ -97,7 +106,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã khách hàng đã trùng với khách hàng khác trong tệp nhập khẩu. .
+        ///   Looks up a localized string similar to Mã khách hàng đã trùng với khách hàng khác trong tệp nhập khẩu..
         /// </summary>
         public static string MsgDuplicateCustomerCodeImport {
             get {
@@ -106,7 +115,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SĐT đã có trong hệ thống. .
+        ///   Looks up a localized string similar to SĐT đã có trong hệ thống..
         /// </summary>
         public static string MsgDuplicatePhoneNumberExist {
             get {
@@ -115,7 +124,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu. .
+        ///   Looks up a localized string similar to SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu..
         /// </summary>
         public static string MsgDuplicatePhoneNumberImport {
             get {

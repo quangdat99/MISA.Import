@@ -15,43 +15,26 @@ namespace MISA.Import.Core.Interface.Repository
     {
 
         /// <summary>
-        /// Kiểm tra mã kahchs hàng đã tồn tại hay chưa
-        /// </summary>
-        /// <param name="customerCode"></param>
-        /// <returns>true - đã tồn tại; false - không tồn tại</returns>
-        /// CreatedBy: dqdat (28/05/2021)
-        bool CheckCustomerCodeExist(string customerCode);
-
-        /// <summary>
-        /// Kiểm tra số điện thoại đã tồn tại trong hệ thống chưa
-        /// </summary>
-        /// <param name="phoneNumber"></param>
-        /// <returns></returns>
-        /// CreatedBy: dqdat (28/05/2021)
-        bool CheckPhoneNumberExist(string phoneNumber);
-
-        /// <summary>
-        /// Kiểm tra nhóm khách hàng có trong hệ thống không
-        /// </summary>
-        /// <param name="customerGroupId"></param>
-        /// <returns></returns>
-        /// CreatedBy: dqdat (28/05/2021)
-        bool CheckCustomerGroupExist(Guid customerGroupId);
-
-        /// <summary>
-        /// Lấy nhóm khách hàng theo tên nhóm khách hàng
-        /// </summary>
-        /// <param name="customerGroupName"></param>
-        /// <returns></returns>
-        /// CreatedBy: dqdat (28/05/2021)
-        CustomerGroup GetCustomerGroupByName(string customerGroupName);
-
-        /// <summary>
         /// Hàm insert một khách hàng vào db.
         /// </summary>
         /// <param name="customer">Thông tin khách hàng.</param>
         /// <returns>Số khách hàng thêm thành công.</returns>
         /// CreatedBy: dqdat (28/05/2021)
         public int InsertCustomer(Customer customer);
+
+        /// <summary>
+        /// Lấy toàn bộ dữ liệu khách hàng
+        /// </summary>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (28/05/2021)
+        public IEnumerable<Customer> GetCustomers();
+
+        /// <summary>
+        /// Lấy toàn bộ dữ liệu nhóm khách hàng
+        /// </summary>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (28/05/2021)
+        public IEnumerable<CustomerGroup> GetCustomerGroups();
+
     }
 }

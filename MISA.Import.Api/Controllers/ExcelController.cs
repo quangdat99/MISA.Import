@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MISA.Import.Core.Interface.Repository;
 
 namespace MISA.Import.Api.Controllers
 {
@@ -22,14 +23,18 @@ namespace MISA.Import.Api.Controllers
         /// Khai báo
         /// </summary>
         ICustomerService _customerService;
+        ICustomerRepository _customerRepository;
+
 
         /// <summary>
         /// Hàm khởi tạo
         /// </summary>
         /// <param name="customerService"></param>
-        public ExcelController(ICustomerService customerService)
+        public ExcelController(ICustomerService customerService, ICustomerRepository customerRepository)
         {
             _customerService = customerService;
+            _customerRepository = customerRepository;
+
         }
 
 
@@ -73,6 +78,12 @@ namespace MISA.Import.Api.Controllers
                 totalRecord = customersImport.Count(),
                 numberRecordAddSuccess = numberRecordAddSuccess
             });
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_customerRepository.GetCustomers());
         }
 
     }

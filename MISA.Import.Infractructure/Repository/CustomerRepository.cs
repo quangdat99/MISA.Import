@@ -41,52 +41,27 @@ namespace MISA.Import.Infrastructure.Repository
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Hàm check mã khách hàng đã tồn tại trong hệ thống chưa ?
-        /// </summary>
-        /// <param name="customerCode"></param>
-        /// <param name="customerId"></param>
-        /// <returns></returns>
-        /// CreatedBy: dqdat (27/05/2021)
-        public bool CheckCustomerCodeExist(string customerCode)
-        {
-            Parameters.Add("@m_CustomerCode", customerCode);
-            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckCustomerCodeExist", param: Parameters, commandType: CommandType.StoredProcedure);
-            return isExist;
-        }
 
         /// <summary>
-        /// Hàm check số điện thoại đã tồn tại trong hệ thống chưa?
+        /// Lấy toàn bộ dữ liệu khách hàng
         /// </summary>
-        /// <param name="phoneNumber"></param>
         /// <returns></returns>
         /// CreatedBy: dqdat (28/05/2021)
-        public bool CheckPhoneNumberExist(string phoneNumber)
+        public IEnumerable<Customer> GetCustomers()
         {
-            Parameters.Add("@m_PhoneNumber", phoneNumber);
-            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckPhoneNumberExist", param: Parameters, commandType: CommandType.StoredProcedure);
-            return isExist;
-        }
-
-
-        public bool CheckCustomerGroupExist(Guid customerGroupId)
-        {
-            Parameters.Add("@m_CustomerGroupId", customerGroupId);
-            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckCustomerGroupExist", param: Parameters, commandType: CommandType.StoredProcedure);
-            return isExist;
+            var customers = DbConnection.Query<Customer>("Proc_GetCustomers", commandType: CommandType.StoredProcedure);
+            return customers;
         }
 
         /// <summary>
-        /// Hàm check Tên nhóm khách hàng có tồn tại trong hệ thống không?
+        /// Lấy toàn bộ dữ liệu nhóm khách hàng
         /// </summary>
-        /// <param name="customerGroupName"></param>
         /// <returns></returns>
         /// CreatedBy: dqdat (28/05/2021)
-        public CustomerGroup GetCustomerGroupByName(string customerGroupName)
+        public IEnumerable<CustomerGroup> GetCustomerGroups()
         {
-            Parameters.Add("@m_CustomerGroupName", customerGroupName);
-            var customerGroup = DbConnection.QueryFirstOrDefault<CustomerGroup>("Proc_GetCustomerGroupByName", param: Parameters, commandType: CommandType.StoredProcedure);
-            return customerGroup;
+            var customerGroups = DbConnection.Query<CustomerGroup>("Proc_GetCustomerGroups", commandType: CommandType.StoredProcedure);
+            return customerGroups;
         }
 
         /// <summary>
@@ -125,6 +100,7 @@ namespace MISA.Import.Infrastructure.Repository
                 Parameters.Add($"@m_{propertyName}", value);
             }
         }
+
         #endregion
 
     }

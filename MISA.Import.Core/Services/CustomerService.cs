@@ -42,27 +42,6 @@ namespace MISA.Import.Core.Services
             _customerRepository = customerRepository;
         }
 
-        /// <summary>
-        /// Hàm thêm nhiều khách hàng không có lỗi vào db.
-        /// </summary>
-        /// <param name="customersImport">Danh sách các khách hàng và lỗi của từng khách hàng</param>
-        /// <returns>Số khách hàng thêm thành công.</returns>
-        /// CreatedBy: dbhuan (06/05/2021)
-        public int InsertCustomers(List<CustomerImport> customersImport)
-        {
-            int i = 0;
-            foreach (var customerImport in customersImport)
-            {
-                if (customerImport.Errors.Count() == 0)
-                {
-                    i++;
-                    _customerRepository.InsertCustomer(customerImport.Data);
-                }
-            }
-            return i;
-        }
-
-
         #endregion
 
         #region Methods
@@ -72,9 +51,12 @@ namespace MISA.Import.Core.Services
         /// <param name="file">file excel.</param>
         /// <param name="cancellationToken">Token hủy</param>
         /// <returns>Danh sách các khách hàng và lỗi của từng khách hàng.</returns>
+        /// CreatedBy: dqdat (27/05/2021)
         public async Task<List<CustomerImport>> ReadFile(IFormFile file, CancellationToken cancellationToken)
         {
             var customersImport = new List<CustomerImport>();
+            var DbCustomers = _customerRepository.GetCustomers();
+            var DbCustomerGroups = _customerRepository.GetCustomerGroups();
 
             using (var stream = new MemoryStream())
             {
@@ -108,7 +90,12 @@ namespace MISA.Import.Core.Services
                         if (customersImport.Any())
                         {
                             // Check mã khách hàng có trùng với khách hàng khác trong tệp nhập khẩu hay không.
-                            for (int i = 0; i < customersImport.Count; i++)
+                            bool checkCustomerCodeimport = customersImport.Any(cus => cus.Data.CustomerCode == customer.CustomerCode);
+                            if (checkCustomerCodeimport == true)
+                            {
+                                customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeImport);
+                            }
+                            /*for (int i = 0; i < customersImport.Count; i++)
                             {
                                 if (customersImport[i].Data.CustomerCode == customer.CustomerCode)
                                 {
@@ -116,10 +103,15 @@ namespace MISA.Import.Core.Services
                                     break;
                                 }
 
-                            }
+                            }*/
 
                             // check SĐT có trùng với SĐT đã tồn tại trong tệp nhập khẩu hay không.
-                            for (int i = 0; i < customersImport.Count; i++)
+                            bool checkPhoneNumbermport = customersImport.Any(cus => cus.Data.PhoneNumber == customer.PhoneNumber);
+                            if (checkPhoneNumbermport == true)
+                            {
+                                customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberImport);
+                            }
+                            /*for (int i = 0; i < customersImport.Count; i++)
                             {
                                 if (customersImport[i].Data.PhoneNumber == customer.PhoneNumber)
                                 {
@@ -127,26 +119,30 @@ namespace MISA.Import.Core.Services
                                     break;
                                 }
 
-                            }
+                            }*/
                         }
 
+
                         // check mã khách hàng đã tồn tại trong hệ thống.
-                        if (_customerRepository.CheckCustomerCodeExist(customer.CustomerCode))
+                        bool checkCustomerCodeExist = DbCustomers.Any(cus => cus.CustomerCode == customer.CustomerCode);
+                        if (checkCustomerCodeExist == true)
                         {
                             customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeExist);
                         }
 
                         // check số điện thoại đã tồn tại trong hệ thống.
-                        if (_customerRepository.CheckPhoneNumberExist(customer.PhoneNumber))
+                        bool checkPhoneNumberExist = DbCustomers.Any(cus => cus.PhoneNumber == customer.PhoneNumber);
+                        if (checkPhoneNumberExist == true)
                         {
                             customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberExist);
                         }
 
                         // check nhóm khách hàng có tồn tại trên hệ thống không.
                         string customerGroupName = ParseString(worksheet.Cells[row, 4].Value);
-                        var customerGroup = _customerRepository.GetCustomerGroupByName(customerGroupName);
+                        var customerGroup = DbCustomerGroups.Where(cusGroup => cusGroup.CustomerGroupName == customerGroupName).FirstOrDefault();
                         if (customerGroup == null)
                         {
+                            customer.CustomerGroupName = customerGroupName;
                             customerImport.Errors.Add(Properties.Resources.MsgCustomerGroupIsExist);
                         }
                         else
@@ -166,10 +162,32 @@ namespace MISA.Import.Core.Services
         }
 
         /// <summary>
+        /// Hàm thêm nhiều khách hàng không có lỗi vào db.
+        /// </summary>
+        /// <param name="customersImport">Danh sách các khách hàng và lỗi của từng khách hàng</param>
+        /// <returns>Số khách hàng thêm thành công.</returns>
+        /// CreatedBy: dqdat (27/05/2021)
+        public int InsertCustomers(List<CustomerImport> customersImport)
+        {
+            int i = 0;
+            foreach (var customerImport in customersImport)
+            {
+                if (customerImport.Errors.Count() == 0)
+                {
+                    i++;
+                    _customerRepository.InsertCustomer(customerImport.Data);
+                }
+            }
+            return i;
+        }
+
+
+        /// <summary>
         /// Hàm chuyển giá trị object từ excel thành kiểu string.
         /// </summary>
         /// <param name="obj">Giá trị cần chuyển</param>
         /// <returns>Chuỗi string.</returns>
+        /// CreatedBy: dqdat (27/05/2021)
         private string ParseString(object obj)
         {
             if (obj is null)
@@ -184,6 +202,7 @@ namespace MISA.Import.Core.Services
         /// </summary>
         /// <param name="obj">dateString</param>
         /// <returns>DateTime</returns>
+        /// CreatedBy: dqdat (27/05/2021)
         private DateTime? ParseDate(object obj)
         {
             string valueStr = ParseString(obj);

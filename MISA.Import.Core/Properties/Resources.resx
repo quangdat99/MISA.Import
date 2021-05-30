@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Error_Exception" xml:space="preserve">
-    <value>Có lỗi xảy ra.</value>
+    <value>Có lỗi xảy ra vui lòng liên hệ người code để được hỗ trợ.</value>
   </data>
   <data name="Female" xml:space="preserve">
     <value>Nữ</value>
@@ -142,10 +142,10 @@
     <value>SĐT đã trùng với SĐT của khách hàng khác trong tệp nhập khẩu.</value>
   </data>
   <data name="MsgFileNull" xml:space="preserve">
-    <value>File rỗng.</value>
+    <value>Tệp không tồn tại.</value>
   </data>
   <data name="MsgMalformedFile" xml:space="preserve">
-    <value>File không đúng định dạng.</value>
+    <value>Tệp không đúng định dạng.</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Khác</value>

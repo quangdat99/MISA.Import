@@ -44,7 +44,7 @@ namespace MISA.Import.Core.Exceptions
 
                     context.Result = new ObjectResult(response)
                     {
-                        StatusCode = 400,
+                        StatusCode = 500,
                     };
                     context.ExceptionHandled = true;
                 }

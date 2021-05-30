@@ -61,7 +61,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Có lỗi xảy ra..
+        ///   Looks up a localized string similar to Có lỗi xảy ra vui lòng liên hệ người code để được hỗ trợ..
         /// </summary>
         public static string Error_Exception {
             get {
@@ -133,7 +133,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File rỗng..
+        ///   Looks up a localized string similar to Tệp không tồn tại..
         /// </summary>
         public static string MsgFileNull {
             get {
@@ -142,7 +142,7 @@ namespace MISA.Import.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File không đúng định dạng..
+        ///   Looks up a localized string similar to Tệp không đúng định dạng..
         /// </summary>
         public static string MsgMalformedFile {
             get {

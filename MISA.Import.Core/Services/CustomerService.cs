@@ -95,15 +95,7 @@ namespace MISA.Import.Core.Services
                             {
                                 customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeImport);
                             }
-                            /*for (int i = 0; i < customersImport.Count; i++)
-                            {
-                                if (customersImport[i].Data.CustomerCode == customer.CustomerCode)
-                                {
-                                    customerImport.Errors.Add(Properties.Resources.MsgDuplicateCustomerCodeImport);
-                                    break;
-                                }
-
-                            }*/
+                           
 
                             // check SĐT có trùng với SĐT đã tồn tại trong tệp nhập khẩu hay không.
                             bool checkPhoneNumbermport = customersImport.Any(cus => cus.Data.PhoneNumber == customer.PhoneNumber);
@@ -111,15 +103,7 @@ namespace MISA.Import.Core.Services
                             {
                                 customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberImport);
                             }
-                            /*for (int i = 0; i < customersImport.Count; i++)
-                            {
-                                if (customersImport[i].Data.PhoneNumber == customer.PhoneNumber)
-                                {
-                                    customerImport.Errors.Add(Properties.Resources.MsgDuplicatePhoneNumberImport);
-                                    break;
-                                }
-
-                            }*/
+                            
                         }
 
 

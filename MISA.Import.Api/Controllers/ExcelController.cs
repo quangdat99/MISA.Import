@@ -82,7 +82,12 @@ namespace MISA.Import.Api.Controllers
             });
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Hàm lấy tất cả bản ghi 
+        /// </summary>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (30/05/2021)
+        [HttpGet("Customers")]
         public IActionResult GetAll()
         {
             return Ok(_customerRepository.GetCustomers());
